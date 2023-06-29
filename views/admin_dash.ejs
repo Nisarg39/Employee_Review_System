@@ -1,0 +1,147 @@
+<link rel="stylesheet" href="/css/admin_dash.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<div class="container " style="margin-bottom: 5%; height: 100%;">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <h5 class="card-title fs-4 text"><%= user.name %> <span class=" fw-normal ms-2 text-uppercase text-success fs-6 text"><%= user.userType %></span></h5>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+                <div>
+                    <ul class="nav nav-pills">
+                        <a href="/users/adminpending/<%= user._id %>" class="link-underline-danger">
+                            <button type="button"  class="btn btn-outline-dark btn-sm" >Pending Reviews</button>
+                        </a>
+                    </ul>
+                </div>
+                <div class="dropdown ">
+                    <li class="list-inline-item dropdown">
+                        <a class="btn btn-dark btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Actions
+                        </a>
+                    
+                      <ul class="dropdown-menu dropdown-menu-dark ">
+                          <li><a class="dropdown-item" href="/users/update/<%= user.id %>"">Edit Profile</a></li>
+                      </ul>
+
+                      <ul class="dropdown-menu dropdown-menu-dark ">
+                        <li><a class="dropdown-item" href="/users/update/<%= user.id %>"">Edit Profile</a></li>
+                    </ul>
+                    
+                    </li>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="">
+                <div class="table-responsive">
+                    <table class="table project-list-table table-nowrap align-middle table-borderless">
+                        <thead >
+                            <tr>
+                                <th scope="col" class="col-name">Name</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Projects</th>
+                                <th scope="col" class="col-action">Action</th>
+                            </tr>
+                        </thead>
+                        
+                            <% for (employee in employees) { %>
+
+                                <tbody>
+                                    <tr>
+                                        <td class="col-name">
+                                            <img src="https://cdn-icons-png.flaticon.com/256/4825/4825044.png" alt="" class="avatar-sm rounded-circle me-2" />
+                                            <a href="#" class="text-body"><%= employees[employee].name %></a>
+                                        </td>
+        
+                                        <% if (employees[employee].userType == "admin") { %>
+                                            <td><span class="badge badge-soft-success mb-0 text-uppercase">Admin</span></td>
+                                        <%} else {%>
+                                            <td><span class="badge badge-soft-info mb-0 text-uppercase">Employee</span></td>
+                                        <% } %>
+                                        <td><%= employees[employee].email %></td>
+                                        <td>
+                                            <a href="/users/review/all/<%= employees[employee].id %>" class="link-underline-danger">
+                                                <button type="button"  class="btn btn-outline-dark btn-sm" >Reviews</button>
+                                            </a>
+                                        </td>
+                                        <td class="col-action">
+                                        
+                                            <ul class="list-inline mb-0">
+                                                <li class="list-inline-item">
+                                                    <a href="/users/update/<%= employees[employee].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit" class="px-2 text-primary"><i class="bx bx-pencil font-size-18"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="/users/delete/<%= employees[employee].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
+                                                </li>
+                                                <li class="list-inline-item dropdown">
+                                                    <a class="btn btn-dark btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Actions
+                                                    </a>
+                                                
+                                                  <ul class="dropdown-menu dropdown-menu-dark ">
+                                                      <li><a class="dropdown-item" href="/users/review/<%= employees[employee].id %>">Assign Review</a></li>
+                                                  </ul>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+    
+                            <% } %>
+                        
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- badge badge-soft-info mb-0 -->
+
+
+<!-- <div>
+    <h1>Admin dashboard</h1>
+    <h1>name: <%= user.name %></h1>
+    <h3>userType: <%= user.userType %></h3>
+    <a href="/users/adminpending/<%= user._id %>">Pending Reviews</a>
+
+    <% for (employee in employees) { %>
+        <div style="">
+            <small><%= employees[employee].id %></small>
+            <span><%= employees[employee].name %></span>
+            <span><%= employees[employee].userType %></span>
+
+            <a href="/users/review/all/<%= employees[employee].id %>">Reviews</a>
+            <a href="/users/review/<%= employees[employee].id %>">Assign review</a>
+            
+                <a class="btn btn-dark btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Actions
+                </a>
+              
+                <ul class="dropdown-menu dropdown-menu-dark">
+                    <li><a class="dropdown-item" href="/users/delete/<%= employees[employee].id %>">Delete User</a></li>
+                    <li><a class="dropdown-item" href="/users/update/<%= employees[employee].id %>">Update Details</a></li>
+                </ul>
+              
+        </div>
+        
+    <% } %>
+</div> -->

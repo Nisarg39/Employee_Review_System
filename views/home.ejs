@@ -1,0 +1,7 @@
+<div>
+  <% if (user.userType == 'admin'){ %>
+    <%- include('admin_dash'); -%>
+  <% } else { %>
+    <%- include('employee_dash'); -%>
+  <% } %>
+</div>

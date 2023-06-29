@@ -1,0 +1,126 @@
+<link rel="stylesheet" href="/css/admin_dash.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<div class="container " style="margin-bottom: 5%; height: 100%;">
+    <div class="row d-flex justify-content-center">
+        <div class="col-lg-6">
+
+            <div class="table-responsive">
+
+                <% if(!user.review[0]){ %>
+                    <div class="alert alert-secondary text-center" role="alert">
+                        No reviews Yet !!!
+                      </div>
+                <% } else { %>
+                
+                <table class="table project-list-table table-nowrap align-middle table-borderless">
+                    <thead >
+                        <tr>
+                            <th scope="col" class="col-name">Name</th>
+                            <th scope="col">Status</th>
+                            <th scope="col" class="col-action">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <%for (rev in user.review){%>
+                            <input type="hidden" name="reviewee" value="<%= user.id%>"/>
+                        <tr>
+                            <td class="col-name">
+                                <img src="https://cdn-icons-png.flaticon.com/256/4825/4825044.png" alt="" class="avatar-sm rounded-circle me-2" />
+                                <a href="#" class="text-body"><%= user.review[rev].reviewer.name %></a>
+                            </td>
+
+                            <% if (user.review[rev].status !== false){ %>
+
+                                <td>
+                                    <!-- review button -->
+
+                                    <!-- Button trigger modal -->
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <span class="badge badge-soft-success mb-0 text-uppercase">view</span>
+                                    </a>
+  
+                                    <!-- Modal -->
+                                    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header" style="border: none;">
+                                                    <h5 class="modal-title fw-normal" id="exampleModalLabel"><%= user.review[rev].reviewer.name %>'s Review To <%= user.name %> </h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                   " <%= user.review[rev].review  %> "
+                                                </div>
+                                                <div class="modal-footer" style="border: none;">
+                                                    <button type="button" class="btn btn-secondary bg-dark" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                
+                            <%} else {%>
+                                <td><span class="badge badge-soft-danger mb-0 text-uppercase">Pending</span></td>
+                            <% } %>
+                            <td class="col-action">
+                                <ul class="list-inline mb-0 ">
+                                    <li class="list-inline-item">
+                                        <a href="/users/review/delete/<%= user.review[rev].id %>" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete" class="px-2 text-danger"><i class="bx bx-trash-alt font-size-18"></i></a>
+                                    </li>
+                                </ul>
+                               
+                                <!-- <a href="/users/review/delete/<%= user.review[rev].id %>">Delete review</a> -->
+                            </td>
+                        </tr>
+                        <% } %>
+                    </tbody>
+                    
+                </table>
+                <% } %>  
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+    <h3>ReviewList</h3>
+    <%for (rev in user.review){%>
+        <input type="hidden" name="reviewee" value="<%=user.id%>"/>
+            <% if (user.review[rev].status == false){ %>
+                <p>
+                    <a class="btn btn-danger" data-bs-toggle="collapse" href="#collapseError" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    watch review
+                    </a>
+                    <small for=""><%= user.review[rev].reviewer.name %> : </small>
+                    <span class="badge rounded-pill text-bg-warning">Pending</span>
+                    <a href="/users/review/delete/<%= user.review[rev].id %>">Delete review</a>
+                </p>
+                <div class="collapse" id="collapseError">
+                    <div class="text-danger text-opacity-75">Not Reviewed Yet !!!</div>
+                </div>
+            <% } else { %>
+                <p>
+                    <a class="btn btn-success" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    watch review
+                    </a>
+                    <small for=""><%= user.review[rev].reviewer.name %> : </small>
+                    <span class="badge rounded-pill text-bg-primary">Reviewed</span>
+                    <a href="/users/review/delete/<%= user.review[rev].id %>">Delete review</a>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                    " <%= user.review[rev].review %> "
+                    </div>
+                </div>
+                
+            <% } %>
+    <% } %>
+</div> -->

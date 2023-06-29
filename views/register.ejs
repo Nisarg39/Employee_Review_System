@@ -1,0 +1,76 @@
+<link rel="stylesheet" href="/css/register.css">
+    <div class="container py-5 h-25">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5 card-container">
+          <div class="card bg-dark text-white" style="border-radius: 1rem;">
+            <div class="card-body p-3 text-center">
+  
+              <div class="mb-md-5 mt-md-4 pb-5">
+  
+                <h2 class="fw-bold mb-2 pb-4 text-uppercase">Register</h2>
+
+                <form action="/users/create-user" method="post">
+
+                    <div class="form-outline form-white mb-4">
+                        <input type="text" name="name" id="typeEmailX" class="form-control form-control-lg" required/>
+                        <label class="form-label"  for="typeEmailX">FullName</label>
+                    </div>
+
+                <div class="form-outline form-white mb-4">
+                  <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg" required/>
+                  <label class="form-label"  for="typeEmailX">Email</label>
+                </div>
+  
+                <div class="form-outline form-white mb-4">
+                  <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" required/>
+                  <label class="form-label"  for="typePasswordX">Password</label>
+                </div>
+  
+                <button class="btn btn-outline-light btn-lg px-5" type="submit">Register</button>
+                
+                </form>
+              </div>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if(message == "false" ) { %>
+        <p>User already exists !!!</p>
+    <% } %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <form action="/users/create-user" method="post">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" aria-describedby="user_name">
+      </div>
+    <div class="mb-3">
+      <label for="InputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" name="email" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="InputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" name="password">
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="Check1">
+      <label class="form-check-label" for="Check1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+    <% if(message == "false" ) { %>
+        <p>User already exists !!!</p>
+    <% } %>
+</form> -->

@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="/css/admin_dash.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<div class="container " style="margin-bottom: 5%; height: 100%;">
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <h5 class="card-title fs-4 text"><%= user.name %> 
+            </div>
+        </div>
+        
+    </div>
+        <% if(!user.reviewAssigned[0]){ %>
+            <div class="col-6 alert alert-secondary text-center" role="alert" style="margin-left: 25%;">
+                No reviews Assigned !!!
+              </div>
+        <% } else { %>
+            <div class="col-6" style="margin-left: 20%; padding-left: 10%;">
+                <table class="table project-list-table table-nowrap align-middle table-borderless">
+                    <thead >
+                        <tr>
+                            <th scope="col" class="col-name">Name</th>
+                            <th scope="col" class="col-action">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (review in reviewsPending){ %>
+                        <tr>
+                            <td class="col-name">
+                                <img src="https://cdn-icons-png.flaticon.com/256/4825/4825044.png" alt="" class="avatar-sm rounded-circle me-2" />
+                                <a href="#" class="text-body"><%= reviewsPending[review].reviewee.name %></a>
+                            </td>
+                            <td>
+                                <!-- Button trigger modal -->
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <span class="badge badge-soft-success mb-0 text-uppercase">Review</span>
+                                </a>
+
+                                <!-- Modal -->
+                            <form action="/users/review/reviewed" method="POST">
+                                <input type="hidden" name="user" value="<%= user._id %>">
+                                <input type="hidden" name="review_id" value="<%= reviewsPending[review]._id %>">
+                                <input type="hidden" name="reviewee_id" value="<%= reviewsPending[review].reviewee._id %>">
+                                <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header" style="border: none;">
+                                                <h5 class="modal-title fw-normal" id="exampleModalLabel"><%= reviewsPending[review].reviewee.name %> </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <textarea name="review" id="" cols="50" rows="5" required></textarea>
+                                            </div>
+                                            <div class="modal-footer" style="border: none;">
+                                                <button type="button" class="btn btn-secondary bg-dark" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary bg-primary" data-bs-dismiss="modal">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            </td>
+                        </tr> 
+                        <% } %>   
+                    </tbody>
+                </table>
+            </div>
+            
+        <% } %>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div>
+    <h1>Reviews Pending</h1>
+    <h1>name: <%= user.name %></h1>
+    <h3>userType: <%= user.userType %></h1>
+    pending Reviews:
+    <% for (review in reviewsPending){ %>
+
+        <small><%= reviewsPending[review].reviewee.name %></small>
+
+        <form action="/users/review/reviewed" method="POST">
+            <input type="hidden" name="user" value="<%= user._id %>">
+            <input type="hidden" name="review_id" value="<%= reviewsPending[review]._id %>">
+            <input type="hidden" name="reviewee_id" value="<%= reviewsPending[review].reviewee._id %>">
+            <textarea name="review" id="" cols="30" rows="5" required></textarea>
+            <input type="submit" value="Submit">
+        </form>
+        
+    <% } %>
+</div>  -->
