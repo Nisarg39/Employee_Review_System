@@ -14,7 +14,7 @@ initializingPassport(passport);
 
 
 app.use(expressSession({        //always use express session before passport initilization
-    secret: "nisarg",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
