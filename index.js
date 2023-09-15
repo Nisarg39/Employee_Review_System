@@ -1,7 +1,8 @@
 const express = require('express');
 const app = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 var bodyParser = require('body-parser');
+require('dotenv').config()
 const expressSession = require('express-session')
 
 const passport= require('passport');        //using passport.js for authentication
