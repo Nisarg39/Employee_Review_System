@@ -36,12 +36,12 @@
                                     <!-- review button -->
 
                                     <!-- Button trigger modal -->
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal<%= user.review[rev].reviewer.id %>">
                                         <span class="badge badge-soft-success mb-0 text-uppercase">view</span>
                                     </a>
   
                                     <!-- Modal -->
-                                    <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal fade " id="exampleModal<%= user.review[rev].reviewer.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">
                                             <div class="modal-content">
                                                 <div class="modal-header" style="border: none;">

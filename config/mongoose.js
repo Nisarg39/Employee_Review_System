@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// 
 mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost/employee_review');
 const db = mongoose.connection;
 // error
