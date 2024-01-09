@@ -42,14 +42,14 @@
   
                                     <!-- Modal -->
                                     <div class="modal fade " id="exampleModal<%= user.review[rev].reviewer.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                                             <div class="modal-content">
                                                 <div class="modal-header" style="border: none;">
-                                                    <h5 class="modal-title fw-normal" id="exampleModalLabel"><%= user.review[rev].reviewer.name %>'s Review To <%= user.name %> </h5>
+                                                    <h5 class="modal-title fw-normal" id="exampleModalLabel"><%= user.review[rev].reviewer.name %>'s Review </h5>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                   " <%= user.review[rev].review  %> "
+                                                   <p style="display: block;">" <%= user.review[rev].review  %> "</p>
                                                 </div>
                                                 <div class="modal-footer" style="border: none;">
                                                     <button type="button" class="btn btn-secondary bg-dark" data-bs-dismiss="modal">Close</button>
